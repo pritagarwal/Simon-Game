@@ -24,6 +24,36 @@ body {
   width: 200px;
   border: 10px solid black;
   border-radius: 20%;
+  cursor:pointer;
+}
+
+#start{
+  background: #8232b8;
+  background-image: -webkit-linear-gradient(top, #8232b8, #445c6b);
+  background-image: -moz-linear-gradient(top, #8232b8, #445c6b);
+  background-image: -ms-linear-gradient(top, #8232b8, #445c6b);
+  background-image: -o-linear-gradient(top, #8232b8, #445c6b);
+  background-image: linear-gradient(to bottom, #8232b8, #445c6b);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Georgia;
+  color: #fff0ff;
+  font-size: 24px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  width: 182px;
+  cursor:pointer;
+}
+
+#start:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
 }
 
 .game-over {

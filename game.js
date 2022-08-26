@@ -32,14 +32,14 @@ function nextSequence() {
   animatePress(randomChosenColor);
 }
 
-$(document).on("keypress", (e) => {
+$("#start").on("click touchend",()=>{
   if (flag === 0) {
     nextSequence();
     flag = 1;
   } 
   console.log("In keyPress");
-});
 
+});
 
 $(".btn").on("click", (e) => {
   if (flag == 1 && touchEvent!=1) {
@@ -78,7 +78,7 @@ function checkAns(currentLevel) {
     $("h1").html("Wrong Move");
     setTimeout(() => {
       $("body").removeClass("game-over");
-      $("h1").html("Press A Key to Start");
+      $("h1").html("Press 👇👇 to Start");
     }, 1000);
   }
 }
@@ -87,25 +87,11 @@ function checkAns(currentLevel) {
 
 //Touch event Listener
 
-$(document).on("touchend",(e)=>{
+$("btn").on("touchend",(e)=>{
   touchEvent = 1;
-  if (flag === 0) {
-    nextSequence();
-    flag = 1;
-   } 
-   else {
-    let userChosenColor = e.target.id;
-    let f =0;
-    buttonColors.forEach((ele)=>{
-      if(ele === e.target.id){
-        f =1;
-      }
-    });
-    if(f === 1){
-      userClickedPattern.push(userChosenColor);
-      playSound(userChosenColor);
-      animatePress(userChosenColor);
-      checkAns(userClickedPattern.length - 1);
-    }
-  }
+  let userChosenColor = e.target.id;
+  userClickedPattern.push(userChosenColor);
+  playSound(userChosenColor);
+  animatePress(userChosenColor);
+  checkAns(userClickedPattern.length - 1);
 });
