@@ -3,7 +3,7 @@ let userClickedPattern = [];
 let buttonColors = ["red", "blue", "green", "yellow"];
 let flag = 0;
 let level = 0;
-
+let touchEvent = 0;
 
 function playSound(name) {
     let audio = new Audio("sounds/" + name + ".mp3");
@@ -36,20 +36,20 @@ $(document).on("keypress", (e) => {
   if (flag === 0) {
     nextSequence();
     flag = 1;
-  } else {
-    console.log("game is on");
-  }
+  } 
+  console.log("In keyPress");
 });
 
 
 $(".btn").on("click", (e) => {
-  if (flag == 1) {
+  if (flag == 1 && touchEvent!=1) {
     userChosenColor = e.target.id;
     userClickedPattern.push(userChosenColor);
     playSound(userChosenColor);
     animatePress(userChosenColor);
     checkAns(userClickedPattern.length - 1);
   }
+  
 });
 
 function startOver(){
@@ -63,9 +63,7 @@ function startOver(){
 
 function checkAns(currentLevel) {
   if (gamepattern[currentLevel] === userClickedPattern[currentLevel]) {
-    console.log("sucess");
     if (gamepattern.length - 1 == currentLevel) {
-      console.log("in inf");
       userClickedPattern = [];
       setTimeout(() => {
         nextSequence();
@@ -84,3 +82,30 @@ function checkAns(currentLevel) {
     }, 1000);
   }
 }
+
+
+
+//Touch event Listener
+
+$(document).on("touchend",(e)=>{
+  touchEvent = 1;
+  if (flag === 0) {
+    nextSequence();
+    flag = 1;
+   } 
+   else {
+    let userChosenColor = e.target.id;
+    let f =0;
+    buttonColors.forEach((ele)=>{
+      if(ele === e.target.id){
+        f =1;
+      }
+    });
+    if(f === 1){
+      userClickedPattern.push(userChosenColor);
+      playSound(userChosenColor);
+      animatePress(userChosenColor);
+      checkAns(userClickedPattern.length - 1);
+    }
+  }
+});
