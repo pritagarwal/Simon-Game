@@ -37,8 +37,6 @@ $("#start").on("click touchend",()=>{
     nextSequence();
     flag = 1;
   } 
-  console.log("In keyPress");
-
 });
 
 $(".btn").on("click", (e) => {
@@ -57,6 +55,7 @@ function startOver(){
     gamepattern = [];
     userClickedPattern = [];
     level = 0;
+    touchEvent=0;
 }
 
 
@@ -87,11 +86,15 @@ function checkAns(currentLevel) {
 
 //Touch event Listener
 
-$("btn").on("touchend",(e)=>{
-  touchEvent = 1;
-  let userChosenColor = e.target.id;
-  userClickedPattern.push(userChosenColor);
-  playSound(userChosenColor);
-  animatePress(userChosenColor);
-  checkAns(userClickedPattern.length - 1);
+$(".btn").on("touchend",(e)=>{
+  if(flag == 1){
+    touchEvent = 1;
+    let userChosenColor = e.target.id;
+    userClickedPattern.push(userChosenColor);
+    playSound(userChosenColor);
+    animatePress(userChosenColor);
+    checkAns(userClickedPattern.length - 1);
+    console.log("touchEnd has");
+  }
+
 });
